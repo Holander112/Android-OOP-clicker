@@ -14,14 +14,16 @@ class ShopActivity:MainActivity() {
 
     override fun onStart() {
         super.onStart()
-        var backButton: Button = findViewById(R.id.backButton);
+        val backButton: Button = findViewById(R.id.backButton)
         backButton.setOnClickListener() {
-            onPause();
+            onPause()
         }
-        var intent = intent
-        var time = intent.getLongExtra("timeLeft", 100000)
-        var seconds = time / 1000
-        var minutes = seconds / 60
+        // Get passed time data using intent object
+        val intent = intent
+        val time = intent.getLongExtra("timeLeft", 100000)
+
+        val seconds = time / 1000
+        val minutes = seconds / 60
         val remainingSeconds = seconds % 60
         // format the values in mm:ss
         val displaySeconds = String.format("%02d", remainingSeconds)

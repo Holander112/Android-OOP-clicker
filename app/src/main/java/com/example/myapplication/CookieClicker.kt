@@ -11,8 +11,8 @@ import android.widget.TextView
 class CookieClicker:MainActivity() {
     private lateinit var scoreCounter: TextView
     private lateinit var shopButton: ImageButton
-    private var timeLeft:Long = 120000;
-    private var  score = 0;
+    private var timeLeft:Long = 120000
+    private var  score = 0
     private var max = 10
 
 
@@ -21,8 +21,8 @@ class CookieClicker:MainActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //get elements from UI
-        scoreCounter = findViewById(R.id.clickCounter);
-        shopButton = findViewById(R.id.shopButton);
+        scoreCounter = findViewById(R.id.clickCounter)
+        shopButton = findViewById(R.id.shopButton)
 
         //Listener to go to shop and send seconds left on timer
         shopButton.setOnClickListener() {
@@ -55,7 +55,6 @@ class CookieClicker:MainActivity() {
         val y = event.rawY.toInt()
         val buttonRect = Rect()
         shopButton.getGlobalVisibleRect(buttonRect)
-
         if (!buttonRect.contains(x, y)){
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
@@ -73,6 +72,8 @@ class CookieClicker:MainActivity() {
         score++
         // Set new max if previous is reached
         if (score == max) {
+            countDownTimer.cancel()
+            countDownTimer.SetMillisInFuture(120000)
             countDownTimer.start()
             score = 0
             max = max + 10
@@ -88,8 +89,8 @@ class CookieClicker:MainActivity() {
         override fun onTick(millisUntilFinished: Long) {
             //get minutes and seconds
             timeLeft = millisUntilFinished
-            var seconds = millisUntilFinished / 1000
-            var minutes = seconds / 60
+            val seconds = millisUntilFinished / 1000
+            val minutes = seconds / 60
             val remainingSeconds = seconds % 60
             // format the values in mm:ss
             val displaySeconds = String.format("%02d", remainingSeconds)
