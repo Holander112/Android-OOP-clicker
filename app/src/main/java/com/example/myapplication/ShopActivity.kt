@@ -2,10 +2,12 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.ViewGroup
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 
-class ShopActivity:MainActivity() {
+class ShopActivity : MainActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         //initialization
         super.onCreate(savedInstanceState)
@@ -29,15 +31,37 @@ class ShopActivity:MainActivity() {
         val displaySeconds = String.format("%02d", remainingSeconds)
         val displayMinutes = String.format("%02d", minutes)
         // print the result in the UI
-        val timeLeft : TextView = findViewById(R.id.timeLeft)
+        val timeLeft: TextView = findViewById(R.id.timeLeft)
         timeLeft.text = displayMinutes + ':' + displaySeconds
-    }
-    override fun onResume() {
-        super.onResume()
+
+        // Add upgrade buttons
+        val ll_main = findViewById(R.id.buttonList) as LinearLayout
+        for (upgrade in Upgrades.list) {
+            // creating the button
+            val button_dynamic = Button(this)
+            // setting layout_width and layout_height using layout parameters
+            button_dynamic.layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            button_dynamic.setOnClickListener {
+                upgrade.purchase()
+                button_dynamic.text = upgrade.toString()
+
+            }
+            button_dynamic.text = upgrade.toString()
+            // add Button to LinearLayout
+            ll_main.addView(button_dynamic)
         }
 
-        override fun onPause() {
-            super.onPause()
-            finish()
-        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        finish()
+    }
 }

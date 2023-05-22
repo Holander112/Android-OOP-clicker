@@ -8,13 +8,12 @@ import android.view.MotionEvent
 import android.widget.ImageButton
 import android.widget.TextView
 
-class CookieClicker:MainActivity() {
+class CookieClicker : MainActivity() {
     private lateinit var scoreCounter: TextView
     private lateinit var shopButton: ImageButton
-    private var timeLeft:Long = 120000
-    private var  score = 0
+    private var timeLeft: Long = 120000
+    private var score = 0
     private var max = 10
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         //initialization
@@ -26,7 +25,7 @@ class CookieClicker:MainActivity() {
 
         //Listener to go to shop and send seconds left on timer
         shopButton.setOnClickListener() {
-            val  intent = Intent(this,ShopActivity::class.java)
+            val intent = Intent(this, ShopActivity::class.java)
             intent.putExtra("timeLeft", timeLeft)
             startActivity(intent)
         }
@@ -46,7 +45,7 @@ class CookieClicker:MainActivity() {
 
     }
 
-   // When screen is clicked calculate if score need to be incremented or direct to shop
+    // When screen is clicked calculate if score need to be incremented or direct to shop
     override fun dispatchTouchEvent(event: MotionEvent): Boolean {
         val shopButton = findViewById<ImageButton>(R.id.shopButton)
 
@@ -55,7 +54,7 @@ class CookieClicker:MainActivity() {
         val y = event.rawY.toInt()
         val buttonRect = Rect()
         shopButton.getGlobalVisibleRect(buttonRect)
-        if (!buttonRect.contains(x, y)){
+        if (!buttonRect.contains(x, y)) {
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
                     cookieClicked()
@@ -69,9 +68,9 @@ class CookieClicker:MainActivity() {
     // If screen is clicked that is not a button
     private fun cookieClicked() {
         // Increment the score
-        score++
+        score += (1 + Upgrades.getTotalClickerModifier()) * Upgrades.getTotalClickerMultiplier()
         // Set new max if previous is reached
-        if (score == max) {
+        if (score >= max) {
             countDownTimer.cancel()
             countDownTimer.SetMillisInFuture(120000)
             countDownTimer.start()
@@ -96,7 +95,7 @@ class CookieClicker:MainActivity() {
             val displaySeconds = String.format("%02d", remainingSeconds)
             val displayMinutes = String.format("%02d", minutes)
             // print the result in the UI
-            val Clicktimer : TextView = findViewById(R.id.Clicktimer)
+            val Clicktimer: TextView = findViewById(R.id.Clicktimer)
             Clicktimer.text = displayMinutes + ':' + displaySeconds
         }
 
