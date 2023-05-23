@@ -18,7 +18,7 @@ class ShopActivity : MainActivity() {
         super.onStart()
         val backButton: Button = findViewById(R.id.backButton)
         backButton.setOnClickListener() {
-            onPause()
+            finish()
         }
         // Get passed time data using intent object
         val intent = intent
@@ -33,6 +33,8 @@ class ShopActivity : MainActivity() {
         // print the result in the UI
         val timeLeft: TextView = findViewById(R.id.timeLeft)
         timeLeft.text = displayMinutes + ':' + displaySeconds
+        val moneyText: TextView = findViewById(R.id.moneyText)
+        moneyText.text = Money.GetMoney().toString() + "$"
 
         // Add upgrade buttons
         val ll_main = findViewById(R.id.buttonList) as LinearLayout
@@ -62,6 +64,5 @@ class ShopActivity : MainActivity() {
 
     override fun onPause() {
         super.onPause()
-        finish()
     }
 }
