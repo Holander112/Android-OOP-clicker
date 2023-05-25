@@ -1,5 +1,10 @@
 package com.example.myapplication
 
+import android.graphics.BlendMode
+import android.graphics.BlendModeColorFilter
+import android.graphics.Color
+import android.graphics.PorterDuff
+import android.os.Build
 import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.Button
@@ -7,10 +12,17 @@ import android.widget.LinearLayout
 import android.widget.TextView
 
 class ShopActivity : MainActivity() {
+    private lateinit var buttonContainer: LinearLayout
+    private lateinit var moneyText: TextView
+    private lateinit var timeLeft: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         //initialization
         super.onCreate(savedInstanceState)
         setContentView(R.layout.shop)
+        buttonContainer = findViewById(R.id.buttonList) as LinearLayout
+        moneyText = findViewById(R.id.moneyText)
+        timeLeft = findViewById(com.example.myapplication.R.id.timeLeft)
     }
 
     override fun onStart() {
@@ -30,31 +42,49 @@ class ShopActivity : MainActivity() {
         val displaySeconds = String.format("%02d", remainingSeconds)
         val displayMinutes = String.format("%02d", minutes)
         // print the result in the UI
-        val timeLeft: TextView = findViewById(R.id.timeLeft)
         timeLeft.text = displayMinutes + ':' + displaySeconds
-        val moneyText: TextView = findViewById(R.id.moneyText)
-        moneyText.text = Money.GetMoney().toString() + "$"
+        moneyText.text = Money.getMoney().toString() + "$"
+        refreshShopButtons()
 
+
+    }
+
+    fun refreshShopButtons() {
+        // get rid of all previous buttons
+        buttonContainer.removeAllViews()
         // Add upgrade buttons
-        val ll_main = findViewById(R.id.buttonList) as LinearLayout
+        val currentMoney = Money.getMoney()
         for (upgrade in Upgrades.list) {
             // creating the button
-            val button_dynamic = Button(this)
+            val newUpgradeButton = Button(this)
             // setting layout_width and layout_height using layout parameters
-            button_dynamic.layoutParams = LinearLayout.LayoutParams(
+            newUpgradeButton.layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
-            button_dynamic.setOnClickListener {
-                upgrade.purchase()
-                button_dynamic.text = upgrade.toString()
-
+            // If player has enough money to buy upgrade
+            if (upgrade.price < currentMoney) {
+                newUpgradeButton.setOnClickListener {
+                    Money.modifyMoney(-upgrade.price.toLong())
+                    moneyText.text = Money.getMoney().toString() + "$"
+                    upgrade.purchase()
+                    newUpgradeButton.text = upgrade.toString()
+                    refreshShopButtons()
+                }
+            } else {
+                newUpgradeButton.setTextColor(Color.parseColor("#E2E2E2"))
+                val bgCol = Color.parseColor("#660000")
+                if (Build.VERSION.SDK_INT >= 29)
+                    newUpgradeButton.background.colorFilter =
+                        BlendModeColorFilter(bgCol, BlendMode.MULTIPLY)
+                else
+                    newUpgradeButton.background.setColorFilter(bgCol, PorterDuff.Mode.MULTIPLY)
             }
-            button_dynamic.text = upgrade.toString()
-            // add Button to LinearLayout
-            ll_main.addView(button_dynamic)
-        }
 
+            newUpgradeButton.text = upgrade.toString()
+            // add Button to LinearLayout
+            buttonContainer.addView(newUpgradeButton)
+        }
     }
 
     override fun onResume() {

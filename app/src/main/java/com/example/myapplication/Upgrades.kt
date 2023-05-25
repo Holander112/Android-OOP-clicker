@@ -3,36 +3,59 @@ package com.example.myapplication
 class Upgrades {
     companion object {
         val list =
-            mutableListOf<Upgrade>(EnergyDrink(), GermanChocolate(), Bitcoin(), Stock(), Futures())
+            mutableListOf<Upgrade>(
+                EnergyDrink(),
+                GermanChocolate(),
+                Outsource(),
+                Bitcoin(),
+                Stock(),
+                Futures()
+            )
 
-        fun getTotalClickerModifier(): Int {
+        fun getTotalScoreModifier(): Int {
             var value = 0
             for (upgrade in list) {
-                value += upgrade.getClickModifier()
+                value += upgrade.getScoreModifier()
             }
             return value
         }
 
-        fun getTotalClickerMultiplier(): Int {
+        fun getTotalScoreMultiplier(): Int {
             var value = 1
             for (upgrade in list) {
-                value *= upgrade.getClickMultiplier()
+                value *= upgrade.getScoreMultiplier()
             }
             return value
         }
 
-        fun getTotalTickAmount(): Int {
+        fun getTotalScorePerTick(): Int {
             var value = 0
             for (upgrade in list) {
-                value += upgrade.getTickAmount()
+                value += upgrade.getScorePerTick()
             }
             return value
         }
 
-        fun getTotalAfterLevelAmount(): Int {
+        fun getTotalScoreAfterLevel(): Int {
             var value = 0
             for (upgrade in list) {
-                value += upgrade.getAfterLevelAmount()
+                value += upgrade.getScoreAfterLevel()
+            }
+            return value
+        }
+
+        fun getTotalMoneyPerTick(): Int {
+            var value = 0
+            for (upgrade in list) {
+                value += upgrade.getMoneyPerTick()
+            }
+            return value
+        }
+
+        fun getTotalMoneyAfterLevel(): Int {
+            var value = 0
+            for (upgrade in list) {
+                value += upgrade.getMoneyAfterLevel()
             }
             return value
         }

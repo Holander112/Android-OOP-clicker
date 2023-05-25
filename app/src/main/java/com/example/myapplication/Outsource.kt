@@ -1,9 +1,9 @@
 package com.example.myapplication
 
-class Stock() :
-    Upgrade(basePrice, "Local stock investment", "Generates small amount of money per second") {
+class Outsource :
+    Upgrade(basePrice, "Outsource to India", "Generates small amount of clicks per  second") {
     companion object {
-        private const val basePrice = 200
+        private const val basePrice = 20
     }
 
     override fun purchase() {
@@ -11,7 +11,7 @@ class Stock() :
 //        this.price = basePrice.toDouble().pow(this.count.toDouble()).toInt()
     }
 
-    override fun getMoneyPerTick(): Int {
+    override fun getScorePerTick(): Int {
         return this.count
     }
 }

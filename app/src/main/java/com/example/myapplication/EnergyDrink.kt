@@ -13,7 +13,7 @@ class EnergyDrink : Upgrade {
         this.price = (this.count + 1) * basePrice
     }
 
-    override fun getClickModifier(): Int {
+    override fun getScoreModifier(): Int {
         return this.count
     }
 

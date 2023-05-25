@@ -3,7 +3,7 @@ package com.example.myapplication
 class Futures() : Upgrade(
     basePrice,
     "Global futures investment",
-    "Generates large amount per second"
+    "Generates large amount of money per second"
 ) {
     companion object {
         private const val basePrice = 2000
@@ -14,7 +14,7 @@ class Futures() : Upgrade(
 //        this.price = basePrice.toDouble().pow(this.count.toDouble()).toInt()
     }
 
-    override fun getTickAmount(): Int {
+    override fun getMoneyPerTick(): Int {
         return this.count * 35
     }
 }

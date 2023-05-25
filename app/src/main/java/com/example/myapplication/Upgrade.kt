@@ -2,10 +2,10 @@ package com.example.myapplication
 
 open class Upgrade(cost: Int, var name: String, var description: String) {
     var price: Int = cost
-    var count: Int
+    var count: Int = 0
 
-    init {
-        count = 0
+    override fun toString(): String {
+        return "${this.name}\nCount: ${this.count}\nPrice: ${this.price}\n${this.description}"
     }
 
     /** Purchase one more of this upgrade, recalculate price of next one */
@@ -14,26 +14,32 @@ open class Upgrade(cost: Int, var name: String, var description: String) {
     }
 
     /** How much to add to every click */
-    open fun getClickModifier(): Int {
+    open fun getScoreModifier(): Int {
         return 0
     }
 
     /** How much to multiply every click */
-    open fun getClickMultiplier(): Int {
+    open fun getScoreMultiplier(): Int {
         return 1
     }
 
+    /** How much score to add every tick */
+    open fun getScorePerTick(): Int {
+        return 0
+    }
+
+    /** How much score to add after finishing level */
+    open fun getScoreAfterLevel(): Int {
+        return 0
+    }
+
     /** How much money to add every tick */
-    open fun getTickAmount(): Int {
+    open fun getMoneyPerTick(): Int {
         return 0
     }
 
     /** How much money to add after finishing level */
-    open fun getAfterLevelAmount(): Int {
+    open fun getMoneyAfterLevel(): Int {
         return 0
-    }
-
-    override fun toString(): String {
-        return "${this.name}\nCount: ${this.count}\nPrice: ${this.price}\n${this.description}"
     }
 }

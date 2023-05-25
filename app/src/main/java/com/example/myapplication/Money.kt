@@ -7,21 +7,21 @@ class Money {
         private var money: Long = 0
         private var prevMoney: Long = 0
 
-        fun GetMoney(): Long{
+        fun getMoney(): Long{
             return money
         }
         //Modify money with negative or positive modifier
-        fun ModifyMoney(modifier: Long){
-            money = money + modifier;
+        fun modifyMoney(modifier: Long){
+            money += modifier;
         }
         //On level completion change money based on level, time left and random modifier
        fun NewLevelPay(level: Int, timeLeft: Long){
            prevMoney = money
            var bonus = level*level * (timeLeft/1000) * (Random.nextInt(5,10)/2)
-           ModifyMoney(bonus)
+           modifyMoney(bonus)
        }
         //On level fail reset money to previous
-        fun ResetMoney(){
+        fun resetMoney(){
             money = prevMoney
         }
     }

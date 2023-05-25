@@ -14,7 +14,7 @@ class GermanChocolate() :
         this.price = basePrice.toDouble().pow(this.count.toDouble()).toInt()
     }
 
-    override fun getClickMultiplier(): Int {
+    override fun getScoreMultiplier(): Int {
         return 2.0.pow(this.count.toDouble()).toInt()
     }
 }

@@ -6,7 +6,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import java.math.RoundingMode
 
- abstract class MainActivity : AppCompatActivity() {
+abstract class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

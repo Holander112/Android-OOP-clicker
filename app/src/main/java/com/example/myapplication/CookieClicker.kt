@@ -1,15 +1,11 @@
 package com.example.myapplication
 
 import android.content.Intent
-import android.content.res.Configuration
 import android.graphics.Rect
 import android.os.Bundle
-import android.util.Log
-import com.example.myapplication.CountDownTimer
 import android.view.MotionEvent
 import android.widget.ImageButton
 import android.widget.TextView
-import org.w3c.dom.Text
 
 class CookieClicker : MainActivity() {
     private lateinit var scoreCounter: TextView
@@ -36,6 +32,11 @@ class CookieClicker : MainActivity() {
             startActivity(intent)
         }
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+        moneyText.text = Money.getMoney().toString() + "$"
     }
 
     override fun onResume() {
@@ -91,22 +92,23 @@ class CookieClicker : MainActivity() {
         level = savedInstanceState.getInt("level")
         timeLeft = savedInstanceState.getLong("timeLeft")
         scoreCounter.text = score.toString() + "/" + max.toString()
-        moneyText.text = Money.GetMoney().toString() + "$"
+        moneyText.text = Money.getMoney().toString() + "$"
     }
 
     //If screen is clicked that is not a button
     private fun cookieClicked() {
         //Increment the score
-        score += (1 + Upgrades.getTotalClickerModifier()) * Upgrades.getTotalClickerMultiplier()
+        score += (1 + Upgrades.getTotalScoreModifier()) * Upgrades.getTotalScoreMultiplier()
         //Set new max if previous is reached
         if (score >= max) {
             Money.NewLevelPay(level, timeLeft)
-            moneyText.text = Money.GetMoney().toString() + "$"
+            Money.modifyMoney(Upgrades.getTotalMoneyAfterLevel().toLong())
+            moneyText.text = Money.getMoney().toString() + "$"
             level++
             countDownTimer.cancel()
             countDownTimer.SetMillisInFuture(120000)
             countDownTimer.start()
-            score = 0 + Upgrades.getTotalAfterLevelAmount()
+            score = 0 + Upgrades.getTotalScoreAfterLevel()
             max = max + 10
         }
         //Print them on UI
@@ -135,8 +137,8 @@ class CookieClicker : MainActivity() {
             //Level reset
             score = 0
             scoreCounter.text = score.toString() + "/" + max.toString()
-            Money.ResetMoney()
-            moneyText.text = Money.GetMoney().toString() + "$"
+            Money.resetMoney()
+            moneyText.text = Money.getMoney().toString() + "$"
             this.cancel()
             this.SetMillisInFuture(120000)
             this.start()
