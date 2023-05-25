@@ -1,12 +1,15 @@
 package com.example.myapplication
 
 open class Upgrade {
-    var name = "Generic Upgrade"
+    var name: String
+    var description: String
     var price: Int
     var count: Int
 
-    constructor(cost: Int) {
+    constructor(cost: Int, name: String, description: String) {
         this.price = cost
+        this.name = name
+        this.description = description
         count = 0
     }
 
@@ -36,6 +39,6 @@ open class Upgrade {
     }
 
     override fun toString(): String {
-        return "Name: ${this.name}\nCount: ${this.count}\nPrice: ${this.price}"
+        return "${this.name}\nCount: ${this.count}\nPrice: ${this.price}\n${this.description}"
     }
 }

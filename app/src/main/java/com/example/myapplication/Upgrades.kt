@@ -2,7 +2,7 @@ package com.example.myapplication
 
 class Upgrades {
     companion object {
-        var list = mutableListOf<Upgrade>(EnergyDrink())
+        var list = mutableListOf<Upgrade>(EnergyDrink(), GermanChocolate(), Bitcoin())
         fun getTotalClickerModifier(): Int {
             var value = 0;
             for (upgrade in Upgrades.list) {

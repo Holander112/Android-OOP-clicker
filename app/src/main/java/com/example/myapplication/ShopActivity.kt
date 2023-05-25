@@ -43,7 +43,7 @@ class ShopActivity : MainActivity() {
             val button_dynamic = Button(this)
             // setting layout_width and layout_height using layout parameters
             button_dynamic.layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
             button_dynamic.setOnClickListener {

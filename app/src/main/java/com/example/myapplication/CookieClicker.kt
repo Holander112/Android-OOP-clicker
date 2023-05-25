@@ -71,13 +71,14 @@ class CookieClicker : MainActivity() {
         }
         return super.dispatchTouchEvent(event)
     }
+
     //When screen gets rotated OnCreate gets called, so data needs to be saved
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putInt("score",score)
-        outState.putInt("max",max)
-        outState.putInt("level",level)
-        outState.putLong("timeLeft",timeLeft)
+        outState.putInt("score", score)
+        outState.putInt("max", max)
+        outState.putInt("level", level)
+        outState.putLong("timeLeft", timeLeft)
 
     }
 
@@ -105,7 +106,7 @@ class CookieClicker : MainActivity() {
             countDownTimer.cancel()
             countDownTimer.SetMillisInFuture(120000)
             countDownTimer.start()
-            score = 0
+            score = 0 + Upgrades.getTotalAfterLevelAmount()
             max = max + 10
         }
         //Print them on UI
