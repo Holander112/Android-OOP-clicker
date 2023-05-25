@@ -2,12 +2,10 @@ package com.example.myapplication
 
 import kotlin.math.pow
 
-class Bitcoin : Upgrade {
+class Bitcoin() : Upgrade(basePrice, "Invest in bitcoin", "Random amount after completing level") {
     companion object {
         private const val basePrice = 50
     }
-
-    constructor() : super(basePrice, "Invest in bitcoin", "Random amount after completing level")
 
     override fun purchase() {
         super.purchase()

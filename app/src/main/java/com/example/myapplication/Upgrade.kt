@@ -1,15 +1,10 @@
 package com.example.myapplication
 
-open class Upgrade {
-    var name: String
-    var description: String
-    var price: Int
+open class Upgrade(cost: Int, var name: String, var description: String) {
+    var price: Int = cost
     var count: Int
 
-    constructor(cost: Int, name: String, description: String) {
-        this.price = cost
-        this.name = name
-        this.description = description
+    init {
         count = 0
     }
 
