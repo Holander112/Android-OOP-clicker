@@ -13,6 +13,6 @@ class Bitcoin() : Upgrade(basePrice, "Invest in bitcoin", "Random amount after c
     }
 
     override fun getMoneyAfterLevel(): Int {
-        return basePrice * 2.0.pow(Math.random() * 4 - 2).toInt()
+        return (basePrice * count) * 2.0.pow(Math.random() * 4 - 2).toInt()
     }
 }
