@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.widget.TextView
 import kotlin.random.Random
 // Money static object class
 class Money {
@@ -14,8 +15,13 @@ class Money {
         fun modifyMoney(modifier: Long){
             money += modifier;
         }
+
+        fun getMoneyText():String{
+            return getMoney().toString() + "$"
+        }
+
         //On level completion change money based on level, time left and random modifier
-       fun NewLevelPay(level: Int, timeLeft: Long){
+       fun newLevelPay(level: Int, timeLeft: Long){
            prevMoney = money
            var bonus = level*level * (timeLeft/1000) * (Random.nextInt(5,10)/2)
            modifyMoney(bonus)
