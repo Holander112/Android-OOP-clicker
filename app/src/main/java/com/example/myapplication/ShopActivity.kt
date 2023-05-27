@@ -8,6 +8,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 
@@ -56,9 +57,12 @@ class ShopActivity : MainActivity() {
         val currentMoney = Money.getMoney()
         for (upgrade in Upgrades.list) {
             // creating the button
+            val newLayout = LinearLayout(this)
             val newUpgradeButton = Button(this)
+            val upgradeImage = ImageView(this)
+            upgradeImage.setBackgroundResource(upgrade.background)
             // setting layout_width and layout_height using layout parameters
-            newUpgradeButton.layoutParams = LinearLayout.LayoutParams(
+            newLayout.layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
@@ -81,9 +85,12 @@ class ShopActivity : MainActivity() {
                     newUpgradeButton.background.setColorFilter(bgCol, PorterDuff.Mode.MULTIPLY)
             }
 
+
             newUpgradeButton.text = upgrade.toString()
             // add Button to LinearLayout
-            buttonContainer.addView(newUpgradeButton)
+            newLayout.addView(newUpgradeButton)
+            newLayout.addView(upgradeImage)
+            buttonContainer.addView(newLayout)
         }
     }
 

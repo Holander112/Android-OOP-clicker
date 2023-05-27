@@ -3,6 +3,7 @@ package com.example.myapplication
 open class Upgrade(cost: Int, var name: String, var description: String) {
     var price: Int = cost
     var count: Int = 0
+    var background = R.drawable.can
 
     override fun toString(): String {
         return "${this.name}\nCount: ${this.count}\nPrice: ${this.price}\n${this.description}"
