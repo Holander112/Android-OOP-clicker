@@ -6,6 +6,7 @@ class Timer {
     companion object {
         var timeLeft: Long = 120000
         lateinit var clickTimer: TextView
+        var lastUpdatedTick: Long = 0
 
         val countDownTimer = object : CountDownTimer(timeLeft, 1000) {
 
@@ -16,15 +17,20 @@ class Timer {
                 val seconds = millisUntilFinished / 1000
                 val minutes = seconds / 60
                 val remainingSeconds = seconds % 60
-                //Format the values in mm:ss
-                val displaySeconds = String.format("%02d", remainingSeconds)
-                val displayMinutes = String.format("%02d", minutes)
-                //Print the result in the UI
-                clickTimer.text = displayMinutes + ':' + displaySeconds
 
-                // process tick events from upgrades
-                Money.modifyMoney(Upgrades.getTotalMoneyPerTick().toLong())
-                Score.modifyScore(Upgrades.getTotalScorePerTick())
+                if (seconds != lastUpdatedTick) {
+                    //Format the values in mm:ss
+                    val displaySeconds = String.format("%02d", remainingSeconds)
+                    val displayMinutes = String.format("%02d", minutes)
+                    //Print the result in the UI
+                    clickTimer.text = "$displayMinutes:$displaySeconds"
+                    // process tick events from upgrades
+                    Money.modifyMoney(Upgrades.getTotalMoneyPerTick().toLong())
+                    Score.modifyScore(
+                        Upgrades.getTotalScorePerTick()
+                    )
+                    lastUpdatedTick = seconds
+                }
             }
 
             override fun onFinish() {

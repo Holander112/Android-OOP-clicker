@@ -43,7 +43,7 @@ class ShopActivity : MainActivity() {
         val displaySeconds = String.format("%02d", remainingSeconds)
         val displayMinutes = String.format("%02d", minutes)
         // print the result in the UI
-        timeLeft.text = displayMinutes + ':' + displaySeconds
+        timeLeft.text = "$displayMinutes:$displaySeconds"
         moneyText.text = Money.getMoney().toString() + "$"
         refreshShopButtons()
 
@@ -70,7 +70,6 @@ class ShopActivity : MainActivity() {
             if (upgrade.price < currentMoney) {
                 newUpgradeButton.setOnClickListener {
                     Money.modifyMoney(-upgrade.price.toLong())
-                    moneyText.text = Money.getMoney().toString() + "$"
                     upgrade.purchase()
                     newUpgradeButton.text = upgrade.toString()
                     refreshShopButtons()
