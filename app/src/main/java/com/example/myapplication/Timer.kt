@@ -3,9 +3,9 @@ package com.example.myapplication
 import android.widget.TextView
 
 class Timer {
-    companion object{
-       var timeLeft:Long = 120000
-        lateinit  var clickTimer:TextView
+    companion object {
+        var timeLeft: Long = 120000
+        lateinit var clickTimer: TextView
 
         val countDownTimer = object : CountDownTimer(timeLeft, 1000) {
 
@@ -21,14 +21,19 @@ class Timer {
                 val displayMinutes = String.format("%02d", minutes)
                 //Print the result in the UI
                 clickTimer.text = displayMinutes + ':' + displaySeconds
+
+                // process tick events from upgrades
+                Money.modifyMoney(Upgrades.getTotalMoneyPerTick().toLong())
+                Score.modifyScore(Upgrades.getTotalScorePerTick())
             }
 
             override fun onFinish() {
                 //Level reset
                 Score.score = 0
-                CookieClicker.scoreCounter.text = Score.score.toString() + "/" + Score.max.toString()
+                CookieClicker.scoreCounter.text =
+                    Score.score.toString() + "/" + Score.max.toString()
                 Money.resetMoney()
-                CookieClicker.moneyText.text = Money.getMoney().toString() + "$"
+                Money.renderMoney()
                 this.cancel()
                 this.SetMillisInFuture(120000)
                 this.start()

@@ -1,18 +1,17 @@
 package com.example.myapplication
 
 import android.content.Intent
-import android.graphics.Rect
 import android.os.Bundle
 import android.view.MotionEvent
 import android.widget.ImageButton
 import android.widget.TextView
 
 class CookieClicker : MainActivity() {
-    companion object{
+    companion object {
         lateinit var scoreCounter: TextView
         lateinit var shopButton: ImageButton
-       lateinit var moneyText: TextView
-       lateinit var clickTimer: TextView
+        lateinit var moneyText: TextView
+        lateinit var clickTimer: TextView
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +30,7 @@ class CookieClicker : MainActivity() {
             startActivity(intent)
         }
         //Print current values
-        scoreCounter.text = Score.getScoreText()
+        scoreCounter.text = Score.toString()
         moneyText.text = Money.getMoneyText()
     }
 
@@ -60,9 +59,6 @@ class CookieClicker : MainActivity() {
         CookieClicked.screenTouched(event)
         return super.dispatchTouchEvent(event)
     }
-
-
-
 
 
 }

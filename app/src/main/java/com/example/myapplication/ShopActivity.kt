@@ -21,7 +21,7 @@ class ShopActivity : MainActivity() {
         //initialization
         super.onCreate(savedInstanceState)
         setContentView(R.layout.shop)
-        buttonContainer = findViewById(R.id.buttonList) as LinearLayout
+        buttonContainer = findViewById<LinearLayout>(R.id.buttonList)
         moneyText = findViewById(R.id.moneyText)
         timeLeft = findViewById(com.example.myapplication.R.id.timeLeft)
     }
