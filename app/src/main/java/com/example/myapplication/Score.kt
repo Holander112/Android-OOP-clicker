@@ -20,7 +20,7 @@ class Score {
                 Timer.countDownTimer.SetMillisInFuture(Timer.duration)
                 Timer.countDownTimer.start()
                 score = 0 + Upgrades.getTotalScoreAfterLevel()
-                max += 10
+                max += max + 100
                 Upgrades.saveUpgrades()
             }
             renderScore()
