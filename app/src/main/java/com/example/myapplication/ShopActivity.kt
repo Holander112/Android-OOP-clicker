@@ -58,6 +58,8 @@ class ShopActivity : MainActivity() {
         for (upgrade in Upgrades.list) {
             // creating the button
             val newLayout = LinearLayout(this)
+            val leftSpacer = LinearLayout(this)
+            val rightSpacer = LinearLayout(this)
             val newUpgradeButton = Button(this)
             val upgradeImage = ImageView(this)
             upgradeImage.setBackgroundResource(upgrade.background)
@@ -66,6 +68,17 @@ class ShopActivity : MainActivity() {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
+            leftSpacer.layoutParams = LinearLayout.LayoutParams(
+                0, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f
+            )
+            rightSpacer.layoutParams = LinearLayout.LayoutParams(
+                0, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f
+            )
+            newUpgradeButton.layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+
             // If player has enough money to buy upgrade
             if (upgrade.price < currentMoney) {
                 newUpgradeButton.setOnClickListener {
@@ -87,8 +100,10 @@ class ShopActivity : MainActivity() {
 
             newUpgradeButton.text = upgrade.toString()
             // add Button to LinearLayout
-            newLayout.addView(newUpgradeButton)
-            newLayout.addView(upgradeImage)
+            leftSpacer.addView(newUpgradeButton)
+            rightSpacer.addView(upgradeImage)
+            newLayout.addView(leftSpacer)
+            newLayout.addView(rightSpacer)
             buttonContainer.addView(newLayout)
         }
     }
