@@ -1,12 +1,18 @@
 package com.example.myapplication
 
-open class Upgrade(cost: Int, var name: String, var description: String, var background: Int) {
+open class Upgrade(cost: Int, var name: String, var description: String, var background: Int) :
+    Cloneable {
     var price: Int = cost
     var count: Int = 0
 
     override fun toString(): String {
         return "${this.name}\nCount: ${this.count}\nPrice: ${this.price}\n${this.description}"
     }
+
+    public override fun clone(): Upgrade {
+        return super.clone() as Upgrade
+    }
+
 
     /** Purchase one more of this upgrade, recalculate price of next one */
     open fun purchase() {

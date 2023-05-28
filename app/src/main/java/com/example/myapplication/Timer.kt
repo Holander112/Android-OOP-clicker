@@ -4,7 +4,8 @@ import android.widget.TextView
 
 class Timer {
     companion object {
-        var timeLeft: Long = 120000
+        val duration: Long = 120000
+        var timeLeft: Long = duration
         lateinit var clickTimer: TextView
         var lastUpdatedTick: Long = 0
 
@@ -36,12 +37,12 @@ class Timer {
             override fun onFinish() {
                 //Level reset
                 Score.score = 0
-                CookieClicker.scoreCounter.text =
-                    Score.score.toString() + "/" + Score.max.toString()
+                Score.renderScore()
                 Money.resetMoney()
                 Money.renderMoney()
+                Upgrades.resetUpgrades()
                 this.cancel()
-                this.SetMillisInFuture(120000)
+                this.SetMillisInFuture(duration)
                 this.start()
             }
 

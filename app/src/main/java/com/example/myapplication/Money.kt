@@ -25,9 +25,9 @@ class Money {
 
         //On level completion change money based on level, time left and random modifier
         fun newLevelPay(level: Int, timeLeft: Long) {
-            prevMoney = money
             var bonus = level * level * (timeLeft / 1000) * (Random.nextInt(5, 10) / 2)
             modifyMoney(bonus)
+            prevMoney = money
             renderMoney()
         }
 

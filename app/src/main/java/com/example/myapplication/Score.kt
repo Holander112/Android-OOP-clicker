@@ -17,10 +17,11 @@ class Score {
                 CookieClicker.moneyText.text = Money.getMoneyText()
                 level++;
                 Timer.countDownTimer.cancel()
-                Timer.countDownTimer.SetMillisInFuture(120000)
+                Timer.countDownTimer.SetMillisInFuture(Timer.duration)
                 Timer.countDownTimer.start()
                 score = 0 + Upgrades.getTotalScoreAfterLevel()
                 max += 10
+                Upgrades.saveUpgrades()
             }
             renderScore()
         }
