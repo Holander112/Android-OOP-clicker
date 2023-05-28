@@ -100,8 +100,8 @@ class ShopActivity : MainActivity() {
 
             newUpgradeButton.text = upgrade.toString()
             // add Button to LinearLayout
-            leftSpacer.addView(newUpgradeButton)
-            rightSpacer.addView(upgradeImage)
+            rightSpacer.addView(newUpgradeButton)
+            leftSpacer.addView(upgradeImage)
             newLayout.addView(leftSpacer)
             newLayout.addView(rightSpacer)
             buttonContainer.addView(newLayout)

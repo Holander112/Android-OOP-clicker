@@ -12,7 +12,7 @@
         android:background="#728C86"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
@@ -24,7 +24,7 @@
             android:layout_marginVertical="50dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="20dp"
             android:orientation="vertical" />
     </ScrollView>
 
@@ -52,11 +52,11 @@
 
     <ImageView
         android:id="@+id/backButton"
-        android:layout_width="119dp"
-        android:layout_height="129dp"
+        android:layout_width="95dp"
+        android:layout_height="58dp"
         app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
         app:layout_constraintEnd_toStartOf="@+id/linearLayout"
-        app:layout_constraintHorizontal_bias="0.19"
+        app:layout_constraintHorizontal_bias="0.04"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/back" />
 
@@ -64,12 +64,17 @@
         android:id="@+id/linearLayout"
         android:layout_width="80dp"
         android:layout_height="80dp"
+        android:layout_marginStart="8dp"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="8dp"
         android:background="#00FFFFFF"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.61"
+        app:layout_constraintStart_toStartOf="@+id/scrollView2"
+        app:layout_constraintTop_toTopOf="@+id/scrollView2"
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:id="@+id/moneyText"
