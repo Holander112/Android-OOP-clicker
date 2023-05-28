@@ -18,3 +18,6 @@ Upgrades:
 For each level, user has to get 10 points, increased by 100 per level
 For each level completed user gets money that is the number of level squared multiplied by 2
 
+
+
+![diagram](https://github.com/Holander112/Android-OOP-clicker/assets/56825622/d9c1be1a-bd08-4fba-8766-751219a7b83c)
