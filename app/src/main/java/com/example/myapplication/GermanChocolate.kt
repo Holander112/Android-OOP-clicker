@@ -4,7 +4,7 @@ import kotlin.math.pow
 
 
 class GermanChocolate() :
-    Upgrade(basePrice, "Grandpa's German chocolate", "Doubles amount per click") {
+    Upgrade(basePrice, "Grandpa' German chocolate", "2x per click", R.drawable.choopss) {
     companion object {
         private const val basePrice = 7
     }

@@ -1,7 +1,7 @@
 package com.example.myapplication
 
 class Stock() :
-    Upgrade(basePrice, "Local stock investment", "Generates small amount of money per second") {
+    Upgrade(basePrice, "Local stock", "Generates small amount\nof money per second", R.drawable.locstonk) {
     companion object {
         private const val basePrice = 200
     }

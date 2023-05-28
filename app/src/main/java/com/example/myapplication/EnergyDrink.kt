@@ -6,7 +6,7 @@ class EnergyDrink : Upgrade {
         private const val basePrice = 3
     }
 
-    constructor() : super(basePrice, "Energy Drink", "Adds +1 to every click")
+    constructor() : super(basePrice, "Energy Drink", "+1 to every click", R.drawable.can)
 
     override fun purchase() {
         super.purchase()

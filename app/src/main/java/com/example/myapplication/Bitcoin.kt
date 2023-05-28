@@ -2,7 +2,7 @@ package com.example.myapplication
 
 import kotlin.math.pow
 
-class Bitcoin() : Upgrade(basePrice, "Invest in bitcoin", "Random amount after completing level") {
+class Bitcoin() : Upgrade(basePrice, "Invest in bitcoin", "Random amount after\ncompleting level", R.drawable.bitstonkver) {
     companion object {
         private const val basePrice = 50
     }

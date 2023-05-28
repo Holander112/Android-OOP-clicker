@@ -28,7 +28,7 @@ class ShopActivity : MainActivity() {
 
     override fun onStart() {
         super.onStart()
-        val backButton: Button = findViewById(R.id.backButton)
+        val backButton: ImageView = findViewById(R.id.backButton)
         backButton.setOnClickListener() {
             finish()
         }

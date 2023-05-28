@@ -1,7 +1,7 @@
 package com.example.myapplication
 
 class Outsource :
-    Upgrade(basePrice, "Outsource to India", "Generates small amount of clicks per  second") {
+    Upgrade(basePrice, "Outsource to India", "Generates small amount\nclicks per second", R.drawable.intern) {
     companion object {
         private const val basePrice = 20
     }
