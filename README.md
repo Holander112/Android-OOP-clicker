@@ -10,7 +10,7 @@ Display lines of code (score) and money used for upgrades
 Upgrades:
   Energy drink - increases click value by 1, price grows by multiplication 
   Grandpas german chocolate - doubles current click value
- Outsourcing to India - adds automatic click, price increases by sum of click upgrades multiplied by base price 
+  Outsourcing to India - adds automatic click, price increases by sum of click upgrades multiplied by base price 
   Bitcoin “investment” - adds random amount of money, upon level completion retains upgrades between levels
   Local stock investment - generates small amount of money per tick
   Global futures investment - generates large amount of money per tick
